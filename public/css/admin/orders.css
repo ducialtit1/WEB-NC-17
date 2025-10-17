@@ -1,0 +1,211 @@
+.order-card {
+    transition: all 0.2s ease;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.order-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.order-header {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.order-body {
+    padding: 1rem;
+    background-color: white;
+}
+
+.order-footer {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.filter-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stats-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+}
+
+.stats-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.orders-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.orders-table td,
+.orders-table th {
+    vertical-align: middle;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.status-processing {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-shipped {
+    background-color: #007bff;
+    color: white;
+}
+
+.status-delivered {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: white;
+}
+
+.order-id {
+    font-weight: 600;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.order-id:hover {
+    text-decoration: underline;
+}
+
+.status-badge {
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+    border-radius: 0.25rem;
+}
+
+.actions-column {
+    width: 120px;
+}
+
+.order-summary {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.date-column {
+    min-width: 120px;
+}
+
+.price-column {
+    font-weight: 600;
+}
+
+/* Animation for new orders */
+@keyframes highlight {
+    0% {
+        background-color: rgba(255, 193, 7, 0.2);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+.new-order {
+    animation: highlight 2s ease-in-out;
+}
+
+/* Thêm vào cuối file */
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 0.5rem 1.5rem;
+}
+
+.dropdown-menu .dropdown-item:active {
+    background-color: #007bff;
+}
+
+.dropdown-menu .dropdown-item i {
+    width: 1.25rem;
+    text-align: center;
+}
+
+/* Styling for buttons inside dropdown */
+.dropdown-menu button.dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dropdown-menu button.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Dropdown header */
+.dropdown-header {
+    font-weight: bold;
+    color: #6c757d;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Make sure the dropdown button looks clickable */
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+/* Fix for dropdown toggle not showing in some browsers */
+.dropdown-toggle::after {
+    display: inline-block !important;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+/* Add some spacing around the dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
