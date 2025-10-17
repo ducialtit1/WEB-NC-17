@@ -1,3 +1,36 @@
+# Ignore everything by default
 *
 !data/
 !.gitignore
+
+# Logs and environment
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+
+# IDE & editor configs
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+
+# Build and storage
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+
+# Homestead & system files
+Homestead.json
+Homestead.yaml
+Thumbs.db

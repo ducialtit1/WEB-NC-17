@@ -1,0 +1,99 @@
+/* ...existing code... */
+
+/* Bình luận sản phẩm */
+.product-comments {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.comments-title {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 22px;
+}
+
+.comment-item {
+    display: flex;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.comment-avatar {
+    margin-right: 15px;
+}
+
+.comment-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.comment-header h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.comment-date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.comment-rating .star {
+    color: #FFD700;
+    font-size: 18px;
+}
+
+.comment-rating .empty {
+    color: #ccc;
+}
+
+.comment-form {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.comment-form h4 {
+    margin-bottom: 20px;
+}
+
+.rating-select {
+    margin-bottom: 15px;
+}
+
+.rating-select .stars {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    color: #ccc;
+    font-size: 30px;
+    line-height: 1;
+    margin-left: 10px;
+}
+
+.rating-select .star {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.rating-select .star:hover,
+.rating-select .star.selected {
+    color: #FFD700;
+}
