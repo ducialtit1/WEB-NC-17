@@ -9,14 +9,19 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
-        Category::create([
-            'name' => 'Pizza',
-            'slug' => 'pizza',
-        ]);
+        // Check if categories already exist to avoid duplicates
+        if (!Category::where('slug', 'pizza')->exists()) {
+            Category::create([
+                'name' => 'Pizza',
+                'slug' => 'pizza',
+            ]);
+        }
 
-        Category::create([
-            'name' => 'Đồ uống',
-            'slug' => 'do-uong',
-        ]);
+        if (!Category::where('slug', 'do-uong')->exists()) {
+            Category::create([
+                'name' => 'Đồ uống',
+                'slug' => 'do-uong',
+            ]);
+        }
     }
 }

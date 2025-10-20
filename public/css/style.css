@@ -214,3 +214,132 @@ body {
 footer {
     margin-top: auto;
 }
+
+.product-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.add-to-cart-btn,
+.buy-now-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.add-to-cart-btn {
+    background-color: #fff;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.buy-now-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: 2px solid #dc3545;
+}
+
+.buy-now-btn:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+.cart-summary {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.summary-details {
+    margin-bottom: 30px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.total-row {
+    font-size: 20px;
+    color: #dc3545;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.checkout-section {
+    text-align: center;
+}
+
+.checkout-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+    min-width: 250px;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    background: linear-gradient(45deg, #218838, #1ea080);
+}
+
+.checkout-note {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-cart-icon {
+    margin-bottom: 30px;
+}
+
+.empty-cart h4 {
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.empty-cart p {
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .cart-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .checkout-btn {
+        min-width: 100%;
+    }
+}

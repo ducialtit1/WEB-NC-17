@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -52,7 +53,10 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="add-to-cart-btn">Thêm vào giỏ</button>
+                            <div class="product-actions">
+                                <button type="submit" class="add-to-cart-btn">Thêm vào giỏ</button>
+                                <button type="submit" name="buy_now" value="1" class="buy-now-btn">Mua ngay</button>
+                            </div>
                         </form>
                     </div>
                 </div>

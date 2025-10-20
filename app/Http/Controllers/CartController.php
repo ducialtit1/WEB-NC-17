@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,48 +9,133 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = session('cart', []);
-        return view('cart.index', compact('cart'));
+        return view('cart.index');
     }
 
-    public function add(Request $request, $id)
+    // Đổi tên method từ addToCart thành add để khớp với route
+    public function add(Request $request, $productId)
     {
-        $product = Product::findOrFail($id);
-
-        $qty = max(1, (int) $request->input('quantity', 1));
-        $cart = session('cart', []);
-
-        $cart[$id] = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'size' => $product->size ?? null,
-            'price' => $product->price,
-            'quantity' => ($cart[$id]['quantity'] ?? 0) + $qty,
-        ];
-
-        session(['cart' => $cart]);
-
-        // Trả JSON để cập nhật badge trên navbar khi thêm bằng AJAX
-        if ($request->wantsJson() || $request->header('X-Requested-With') === 'XMLHttpRequest') {
-            return response()->json([
-                'ok' => true,
-                'cart_count' => collect($cart)->sum('quantity'),
-            ]);
-    }
-
-    return redirect()->route('cart.index');
-    }
-
-    public function remove(Request $request, $id)
-    {
-        $cart = session('cart', []);
-        unset($cart[$id]);
-        session(['cart' => $cart]);
-
-        if ($request->wantsJson()) {
-            return response()->json(['ok' => true, 'cart_count' => collect($cart)->sum('quantity')]);
+        $product = Product::with(['images'])->find($productId);
+        
+        if (!$product) {
+            return back()->with('error', 'Sản phẩm không tồn tại!');
         }
 
-        return redirect()->route('cart.index');
+        $cart = session()->get('cart', []);
+        $quantity = $request->quantity ?? 1;
+
+        // Debug: In ra thông tin sản phẩm
+        \Log::info('Product data:', [
+            'product' => $product->toArray(),
+            'images' => $product->images->toArray()
+        ]);
+
+        // Lấy hình ảnh sản phẩm - kiểm tra nhiều trường hợp
+        $imagePath = 'default.jpg';
+        
+        // Kiểm tra nếu có quan hệ mainImage
+        if ($product->relationLoaded('mainImage') && $product->mainImage) {
+            $imagePath = $product->mainImage->path;
+        } 
+        // Kiểm tra nếu có images
+        elseif ($product->images && $product->images->count() > 0) {
+            $imagePath = $product->images->first()->path;
+        }
+        // Kiểm tra trường image trực tiếp trong bảng products
+        elseif (isset($product->image) && $product->image) {
+            $imagePath = $product->image;
+        }
+
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity'] += $quantity;
+        } else {
+            $cart[$productId] = [
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $quantity,
+                'image' => $imagePath
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        // Debug: In ra giỏ hàng
+        \Log::info('Cart after adding:', session()->get('cart'));
+
+        if ($request->has('buy_now')) {
+            return redirect()->route('cart.index')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng!');
+        }
+
+        return back()->with('success', 'Đã thêm sản phẩm vào giỏ hàng!');
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        \Log::info('Update quantity called', ['id' => $id, 'change' => $request->input('change')]);
+        
+        $cart = session()->get('cart', []);
+        
+        if (isset($cart[$id])) {
+            $change = $request->input('change', 0);
+            $cart[$id]['quantity'] += $change;
+            
+            if ($cart[$id]['quantity'] <= 0) {
+                unset($cart[$id]);
+            }
+            
+            session()->put('cart', $cart);
+            
+            \Log::info('Cart updated', ['cart' => $cart]);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Đã cập nhật số lượng',
+                'cart_count' => count($cart)
+            ]);
+        }
+        
+        return response()->json([
+            'success' => false,
+            'message' => 'Sản phẩm không tồn tại trong giỏ hàng'
+        ]);
+    }
+
+    public function removeFromCart(Request $request, $id)
+    {
+        \Log::info('Remove from cart called', ['id' => $id]);
+        
+        $cart = session()->get('cart', []);
+        
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+            
+            \Log::info('Product removed, cart now:', $cart);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Đã xóa sản phẩm khỏi giỏ hàng',
+                'cart_count' => count($cart)
+            ]);
+        }
+        
+        return response()->json([
+            'success' => false,
+            'message' => 'Sản phẩm không tồn tại trong giỏ hàng'
+        ]);
+    }
+
+    public function clearCart(Request $request)
+    {
+        \Log::info('Clear cart called');
+        
+        session()->forget('cart');
+        
+        \Log::info('Cart cleared');
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Đã xóa toàn bộ giỏ hàng'
+        ]);
     }
 }

@@ -55,10 +55,13 @@ class ProductFactory extends Factory
             ? $this->faker->randomFloat(2, 50000, 500000) // Giá đồ ăn từ 50,000 đến 500,000
             : $this->faker->randomFloat(2, 10000, 50000); // Giá đồ uống từ 10,000 đến 50,000
 
+        // Tạo slug duy nhất từ tên sản phẩm + timestamp để tránh trùng lặp
+        $slug = \Illuminate\Support\Str::slug($name) . '-' . time() . '-' . rand(1000, 9999);
+
         return [
             'category_id' => $type === 'food' ? 1 : 2, // Giả sử 1 = Đồ ăn, 2 = Đồ uống
             'name' => $name,
-            'slug' => $this->faker->unique()->slug,
+            'slug' => $slug,
             'description' => $description, // Mô tả phù hợp với loại sản phẩm
             'price' => $price,
             'type' => $type,

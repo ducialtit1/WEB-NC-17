@@ -11,11 +11,22 @@ class CommentController extends Controller
     /**
      * Hiển thị danh sách bình luận
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::with(['user', 'product'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $query = Comment::with(['user', 'product'])->orderBy('created_at', 'desc');
+
+        // Lọc theo trạng thái
+        if ($request->has('status') && $request->status !== 'all') {
+            if ($request->status === 'pending') {
+                $query->where('is_approved', false)->where('is_rejected', false);
+            } elseif ($request->status === 'approved') {
+                $query->where('is_approved', true);
+            } elseif ($request->status === 'rejected') {
+                $query->where('is_rejected', true);
+            }
+        }
+
+        $comments = $query->paginate(10);
 
         return view('admin.comments.index', compact('comments'));
     }
@@ -27,6 +38,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $comment->is_approved = true;
+        $comment->is_rejected = false;
         $comment->save();
 
         return back()->with('success', '✅ Bình luận đã được phê duyệt.');
@@ -39,6 +51,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $comment->is_approved = false;
+        $comment->is_rejected = true;
         $comment->save();
 
         return back()->with('success', '🚫 Bình luận đã bị từ chối.');
@@ -55,24 +68,25 @@ class CommentController extends Controller
         return back()->with('success', '🗑️ Bình luận đã bị xóa.');
     }
 
+    /**
+     * Sửa bình luận (tuỳ chọn)
+     */
     public function edit($id)
-{
-    $comment = Comment::with(['user', 'product'])->findOrFail($id);
-    return view('admin.comments.edit', compact('comment'));
-}
+    {
+        $comment = Comment::with(['user', 'product'])->findOrFail($id);
+        return view('admin.comments.edit', compact('comment'));
+    }
 
-public function update(Request $request, $id)
-{
-    $validated = $request->validate([
-        'content' => 'required|string|max:500',
-        'rating' => 'required|integer|between:1,5',
-        'is_approved' => 'required|boolean',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'content' => 'required|string|max:500',
+            'rating' => 'required|integer|between:1,5',
+        ]);
 
-    $comment = Comment::findOrFail($id);
-    $comment->update($validated);
+        $comment = Comment::findOrFail($id);
+        $comment->update($validated);
 
-    return redirect()->route('admin.comments')->with('success', '✅ Bình luận đã được cập nhật.');
-}
-
+        return redirect()->route('admin.comments.index')->with('success', '✅ Bình luận đã được cập nhật.');
+    }
 }

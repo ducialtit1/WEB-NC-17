@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Quan hệ: Một người dùng có nhiều đơn hàng
+     */
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\Order::class, 'user_id');
+    }
 }

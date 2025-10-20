@@ -12,10 +12,12 @@ Route::get('/products/{slug}', [ProductController::class, 'show'])->name('produc
 Route::get('/foods', [ProductController::class, 'foodsAjax'])->name('foods.ajax');
 Route::get('/drinks', [ProductController::class, 'drinksAjax'])->name('drinks.ajax');
 
-
+// Cart routes
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove'); // Đổi thành POST
+Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
 Route::post('products/{product}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::middleware(['auth', 'admin'])->group(function () {

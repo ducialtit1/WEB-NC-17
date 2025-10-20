@@ -1,34 +1,39 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\DashboardController;
 
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
-// Admin routes
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
-    
-    // Product management
-    Route::get('/products', [AdminController::class, 'products'])->name('products');
-    Route::get('/products/create', [AdminController::class, 'createProduct'])->name('products.create');
-    Route::post('/products', [AdminController::class, 'storeProduct'])->name('products.store');
-    Route::get('/products/{product}/edit', [AdminController::class, 'editProduct'])->name('products.edit');
-    Route::put('/products/{product}', [AdminController::class, 'updateProduct'])->name('products.update');
-    Route::delete('/products/{product}', [AdminController::class, 'destroyProduct'])->name('products.destroy');
-    
-    // Order management
-    Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
-    Route::get('/orders/{order}', [AdminController::class, 'showOrder'])->name('orders.show');
-    Route::put('/orders/{order}/status', [AdminController::class, 'updateOrderStatus'])->name('orders.update-status');
-    Route::put('/orders/{id}/confirm', [AdminController::class, 'confirmOrder'])->name('orders.confirm');
-    
-    // Comment management
-    Route::get('/comments', [AdminController::class, 'comments'])->name('comments');
-    Route::put('/comments/{comment}/approve', [AdminController::class, 'approveComment'])->name('comments.approve');
-    Route::put('/comments/{comment}/reject', [AdminController::class, 'rejectComment'])->name('comments.reject');
-    Route::delete('/comments/{comment}', [AdminController::class, 'destroyComment'])->name('comments.destroy');
-    
-    // User management
-    Route::get('/users', [AdminController::class, 'users'])->name('users');
-    Route::put('/users/{user}/toggle-admin', [AdminController::class, 'toggleUserAdmin'])->name('users.toggle-admin');
-});
+        // === DASHBOARD ===
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        // === USER MANAGEMENT ===
+        Route::resource('users', UserController::class);
+        Route::put('/users/{user}/toggle-admin', [AdminController::class, 'toggleUserAdmin'])->name('users.toggle-admin');
+
+        // === PRODUCT MANAGEMENT ===
+        Route::resource('products', ProductController::class)->except(['show']);
+
+        // === COMMENT MANAGEMENT ===
+        Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+        Route::put('/comments/{id}/approve', [CommentController::class, 'approve'])->name('comments.approve');
+        Route::put('/comments/{id}/reject', [CommentController::class, 'reject'])->name('comments.reject');
+        Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+        // === ORDER MANAGEMENT ===
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::put('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
+        Route::get('/orders/{id}/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
+        Route::get('/orders/{id}/complete', [OrderController::class, 'complete'])->name('orders.complete');
+        Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    });

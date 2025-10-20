@@ -73,8 +73,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="3">Tổng cộng:</th>
-                                    <th class="text-end">{{ number_format($order->total) }} VND</th>
+                                    <th colspan="3" style="padding: 3px 8px;">Tổng cộng:</th>
+                                    <th class="text-end" style="padding: 3px 8px;">{{ number_format($order->total) }} VND</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -11,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('css/admin/layouts.css') }}" rel="stylesheet">
-    
 
     @stack('styles')
 </head>
@@ -81,28 +79,28 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.products*') ? 'active' : '' }}" href="{{ route('admin.products') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.products*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
                         <i class="bi bi-box-seam"></i>
                         Sản phẩm
                     </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.orders*') ? 'active' : '' }}" href="{{ route('admin.orders') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.orders*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
                         <i class="bi bi-cart3"></i>
                         Đơn hàng
                     </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.comments*') ? 'active' : '' }}" href="{{ route('admin.comments') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.comments*') ? 'active' : '' }}" href="{{ route('admin.comments.index') }}">
                         <i class="bi bi-chat-dots"></i>
                         Bình luận
                     </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}" href="{{ route('admin.users') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                         <i class="bi bi-people"></i>
                         Người dùng
                     </a>
@@ -164,19 +162,15 @@
         </footer>
     </main>
     
-    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script>
-        // Sidebar toggle
         document.getElementById('sidebarToggle')?.addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('show');
         });
         
-        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
@@ -187,7 +181,6 @@
             }
         });
         
-        // Auto-hide alerts after 5 seconds
         window.setTimeout(function() {
             $('.alert-dismissible').fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
