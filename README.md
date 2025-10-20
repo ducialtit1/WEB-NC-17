@@ -1,61 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Dự án Laravel E-Commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Tính năng
 
-## About Laravel
+- Trang chủ hiện đại với phần hero, sản phẩm nổi bật, giới thiệu, liên hệ
+- Thiết kế responsive, ưu tiên di động, hiệu ứng mượt mà
+- CSS nâng cao với các mẫu thiết kế hiện đại
+- Quản lý đơn hàng cho admin: cập nhật trạng thái, giao hàng, hoàn thành
+- Phân quyền quản trị cho các chức năng admin
+- Quản lý sản phẩm, người dùng, bình luận
+- Đã tích hợp Laravel Breeze cho xác thực và quản lý người dùng
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Hướng dẫn cài đặt
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone dự án về máy
+2. Cài đặt các package:
+   ```
+   composer install
+   npm install
+   ```
+3. Sao chép file `.env.example` thành `.env` và cập nhật thông tin database
+4. Tạo key ứng dụng:
+   ```
+   php artisan key:generate
+   ```
+5. Cài đặt Laravel Breeze:
+   ```
+   composer require laravel/breeze --dev
+   php artisan breeze:install
+   npm install && npm run dev
+   php artisan migrate
+   ```
+6. (Tùy chọn) Seed dữ liệu mẫu:
+   ```
+   php artisan db:seed
+   ```
+7. Khởi động server phát triển:
+   ```
+   php artisan serve
+   ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Quy trình trạng thái đơn hàng
 
-## Learning Laravel
+- Đơn hàng có thể chuyển qua các trạng thái: `pending`, `processing`, `shipping`, `completed`, `cancelled`
+- Admin có thể chuyển đơn sang trạng thái giao hàng hoặc hoàn thành từ dashboard
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Cấu trúc thư mục
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- `app/Models/` - Model Eloquent
+- `app/Http/Controllers/` - Controller cho web và admin
+- `resources/views/` - Giao diện Blade cho frontend và admin
+- `public/css/` - File CSS
+- `database/migrations/` - File migration cho database
+- `routes/` - Định nghĩa route
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Lưu ý
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Đảm bảo sử dụng đúng tên route, ví dụ: `admin.orders.index`
+- Tùy chỉnh giao diện tại các file Blade và CSS trong `resources/views` và `public/css`
+- Laravel Breeze đã được cài đặt để hỗ trợ xác thực và quản lý người dùng
