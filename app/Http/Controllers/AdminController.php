@@ -57,7 +57,7 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'size' => 'required|string|max:10',
             'type' => 'required|in:food,drink',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         $product = new Product();
@@ -70,8 +70,8 @@ class AdminController extends Controller
         $product->save();
         
         // Xử lý hình ảnh
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('main_image')) {
+            $image = $request->file('main_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('imgs'), $imageName);
             
@@ -104,7 +104,7 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'size' => 'required|string|max:10',
             'type' => 'required|in:food,drink',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
         $product = Product::findOrFail($id);
@@ -117,14 +117,17 @@ class AdminController extends Controller
         $product->save();
         
         // Xử lý hình ảnh nếu có
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('main_image')) {
             // Xóa ảnh cũ nếu là ảnh chính
             if ($product->mainImage) {
-                Storage::delete('public/imgs/' . $product->mainImage->path);
+                $oldImagePath = public_path('imgs/' . $product->mainImage->path);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
                 $product->mainImage->delete();
             }
             
-            $image = $request->file('image');
+            $image = $request->file('main_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('imgs'), $imageName);
             
@@ -146,7 +149,10 @@ class AdminController extends Controller
         
         // Xóa các hình ảnh liên quan
         foreach ($product->images as $image) {
-            Storage::delete('public/imgs/' . $image->path);
+            $imagePath = public_path('imgs/' . $image->path);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
             $image->delete();
         }
         

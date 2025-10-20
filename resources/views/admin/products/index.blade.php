@@ -29,7 +29,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if ($product->mainImage)
-                            <img src="{{ asset('storage/' . $product->mainImage->path) }}" width="80" alt="">
+                            <img src="{{ asset('imgs/' . $product->mainImage->path) }}" width="80" alt="" class="img-thumbnail">
                         @else
                             <span class="text-muted">Không có</span>
                         @endif

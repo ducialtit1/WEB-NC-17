@@ -31,6 +31,7 @@
                                 <th>Mã đơn hàng</th>
                                 <th>Ngày đặt</th>
                                 <th>Trạng thái</th>
+                                <th>Ngày xác nhận</th>
                                 <th>Thanh toán</th>
                                 <th>Tổng tiền</th>
                                 <th></th>
@@ -47,7 +48,7 @@
                                                 <span class="badge bg-warning text-dark">Chờ xử lý</span>
                                                 @break
                                             @case('processing')
-                                                <span class="badge bg-info">Đang xử lý</span>
+                                                <span class="badge bg-info">Đã xác nhận</span>
                                                 @break
                                             @case('completed')
                                                 <span class="badge bg-success">Đã hoàn thành</span>
@@ -58,6 +59,9 @@
                                             @default
                                                 <span class="badge bg-secondary">{{ $order->status }}</span>
                                         @endswitch
+                                        </td>
+                                        <td>
+                                            {{ $order->confirmed_at ? $order->confirmed_at->format('d/m/Y H:i') : '-' }}
                                     </td>
                                     <td>
                                         {{ $order->payment_method == 'cod' ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản ngân hàng' }}

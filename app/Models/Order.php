@@ -18,6 +18,11 @@ class Order extends Model
         'payment_method',
         'total',
         'status',
+        'confirmed_at',
+    ];
+    
+    protected $casts = [
+        'confirmed_at' => 'datetime',
     ];
     
     public function user()

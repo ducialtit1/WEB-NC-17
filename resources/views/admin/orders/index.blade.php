@@ -11,7 +11,7 @@
     @else
         <div class="table-responsive">
             <table class="table table-bordered align-middle">
-                <thead class="table-dark">
+                <thead class="table-light">
                     <tr>
                         <th>#</th>
                         <th>Người đặt</th>
@@ -37,7 +37,7 @@
                                 @php
                                     $statusLabels = [
                                         'pending' => 'Chờ xác nhận',
-                                        'processing' => 'Đang xử lý',
+                                        'processing' => 'Đã xác nhận',
                                         'completed' => 'Đã hoàn thành',
                                         'cancelled' => 'Đã hủy',
                                     ];
@@ -62,11 +62,6 @@
                                 @if($order->status === 'pending')
                                     <a href="{{ route('admin.orders.confirm', $order->id) }}" class="btn btn-sm btn-success">
                                         <i class="bi bi-check-circle"></i> Xác nhận
-                                    </a>
-                                {{-- Nếu đơn hàng đã được xác nhận (đang xử lý) --}}
-                                @elseif($order->status === 'processing')
-                                    <a href="{{ route('admin.orders.complete', $order->id) }}" class="btn btn-sm btn-info">
-                                        <i class="bi bi-flag"></i> Hoàn thành
                                     </a>
                                 @endif
 

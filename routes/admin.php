@@ -34,6 +34,5 @@ Route::middleware(['auth', 'admin'])
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
         Route::put('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
         Route::get('/orders/{id}/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
-        Route::get('/orders/{id}/complete', [OrderController::class, 'complete'])->name('orders.complete');
         Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
     });
