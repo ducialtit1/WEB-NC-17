@@ -54,6 +54,36 @@
         </tbody>
     </table>
 
-    {{ $products->links() }}
+    @if ($products->lastPage() > 1)
+        <nav aria-label="Phân trang sản phẩm">
+            <ul class="pagination justify-content-center">
+                <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $products->url(1) }}" aria-label="Trang đầu">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </a>
+                </li>
+                <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}" aria-label="Trang trước">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                @for ($i = 1; $i <= $products->lastPage(); $i++)
+                    <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+                <li class="page-item {{ $products->currentPage() == $products->lastPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}" aria-label="Trang sau">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                <li class="page-item {{ $products->currentPage() == $products->lastPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $products->url($products->lastPage()) }}" aria-label="Trang cuối">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    @endif
 </div>
 @endsection
