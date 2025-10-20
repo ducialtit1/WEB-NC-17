@@ -37,7 +37,7 @@
                     <ul class="footer-contact">
                         <li>
                             <i class="bi bi-geo-alt me-2"></i>
-                            123 Đường ABC, Quận 1, TP.HCM
+                            Đại Học Phenikaa
                         </li>
                         <li>
                             <i class="bi bi-telephone me-2"></i>
@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <i class="bi bi-envelope me-2"></i>
-                            info@foodstore.com
+                            Dofoodstore@gmail.com
                         </li>
                     </ul>
                 </div>

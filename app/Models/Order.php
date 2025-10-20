@@ -19,10 +19,12 @@ class Order extends Model
         'total',
         'status',
         'confirmed_at',
+        'completed_at',
     ];
     
     protected $casts = [
         'confirmed_at' => 'datetime',
+        'completed_at' => 'datetime',
     ];
     
     public function user()
@@ -41,9 +43,10 @@ class Order extends Model
     public function getStatusLabelAttribute()
     {
         return match ($this->status) {
-            'pending'    => ['Chờ xử lý', 'bg-warning text-dark'],
-            'processing' => ['Đang giao', 'bg-info text-dark'],
-            'completed'  => ['Hoàn thành', 'bg-success text-white'],
+            'pending'    => ['Chờ xác nhận', 'bg-warning text-dark'],
+            'processing' => ['Đã xác nhận', 'bg-info text-dark'],
+            'shipping'   => ['Đang giao hàng', 'bg-primary text-white'],
+            'completed'  => ['Đã hoàn thành', 'bg-success text-white'],
             'cancelled'  => ['Đã hủy', 'bg-danger text-white'],
             default      => ['Không xác định', 'bg-secondary text-white'],
         };

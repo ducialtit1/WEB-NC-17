@@ -34,5 +34,7 @@ Route::middleware(['auth', 'admin'])
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
         Route::put('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
         Route::get('/orders/{id}/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
+        Route::patch('/orders/{id}/shipping', [OrderController::class, 'markAsShipping'])->name('orders.shipping');
+        Route::patch('/orders/{id}/completed', [OrderController::class, 'markAsCompleted'])->name('orders.completed');
         Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
     });

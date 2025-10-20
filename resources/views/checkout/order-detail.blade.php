@@ -31,7 +31,7 @@
                                 Chờ xử lý
                                 @break
                             @case('processing')
-                                Đang xử lý
+                                Đã xác nhận
                                 @break
                             @case('completed')
                                 Đã hoàn thành

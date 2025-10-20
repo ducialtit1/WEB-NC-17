@@ -275,14 +275,14 @@
                                 <div class="contact-item">
                                     <i class="bi bi-envelope-fill"></i>
                                     <h5>Email</h5>
-                                    <p>info@foodstore.com</p>
+                                    <p>Dofoodstore@gmail.com</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="contact-item">
                                     <i class="bi bi-geo-alt-fill"></i>
                                     <h5>Địa chỉ</h5>
-                                    <p>123 Đường ABC, Quận 1, TP.HCM</p>
+                                    <p>Đại Học Phenikaa</p>
                                 </div>
                             </div>
                         </div>
