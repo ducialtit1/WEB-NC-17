@@ -39,6 +39,9 @@
                             @case('cancelled')
                                 Đã hủy
                                 @break
+                            @case('shipping')
+                                Đang giao hàng
+                                @break
                             @default
                                 {{ $order->status }}
                         @endswitch

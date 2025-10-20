@@ -56,6 +56,9 @@
                                             @case('cancelled')
                                                 <span class="badge bg-danger">Đã hủy</span>
                                                 @break
+                                            @case('shipping')
+                                                <span class="badge bg-primary text-white">Đang giao hàng</span>
+                                                @break
                                             @default
                                                 <span class="badge bg-secondary">{{ $order->status }}</span>
                                         @endswitch

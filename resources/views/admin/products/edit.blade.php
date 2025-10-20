@@ -39,7 +39,7 @@
         <div class="mb-3">
             <label>Ảnh chính hiện tại</label><br>
             @if ($product->mainImage)
-                <img src="{{ asset('imgs/' . $product->mainImage->path) }}" width="120" class="mb-2"><br>
+                <img src="{{ asset('imgs/' . basename($product->mainImage->path)) }}" width="120" class="mb-2"><br>
             @else
                 <span class="text-muted">Không có ảnh</span><br>
             @endif

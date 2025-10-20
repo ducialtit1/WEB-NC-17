@@ -45,11 +45,14 @@ class ProductController extends Controller
 
         // ✅ Lưu ảnh chính vào bảng product_images
         if ($request->hasFile('main_image')) {
-            $path = $request->file('main_image')->store('products', 'public');
+            $file = $request->file('main_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $ext;
+            $file->move(public_path('imgs'), $filename);
 
             ProductImage::create([
                 'product_id' => $product->id,
-                'path' => $path,
+                'path' => $filename,
                 'is_main' => true,
             ]);
         }
@@ -93,9 +96,13 @@ class ProductController extends Controller
             }
 
             // Thêm ảnh mới
-            $path = $request->file('main_image')->store('products', 'public');
+            $file = $request->file('main_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $ext;
+            $file->move(public_path('imgs'), $filename);
+
             $product->images()->create([
-                'path' => $path,
+                'path' => $filename,
                 'is_main' => true,
             ]);
         }
