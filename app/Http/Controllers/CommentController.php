@@ -41,7 +41,7 @@ class CommentController extends Controller
         
         $comment->save();
         
-        return back()->with('success', 'Cảm ơn bạn đã gửi đánh giá! Bình luận của bạn sẽ được hiển thị sau khi được phê duyệt.');
+        return back()->with('success', 'Cảm ơn bạn đã gửi đánh giá!');
     }
     
     /**
