@@ -6,7 +6,7 @@
   <title>Giỏ hàng</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{asset('css/cart.css')}}" rel="stylesheet">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,7 +17,6 @@
   <div class="container my-5">
     <h2><i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn</h2>
     
-    <!-- Thông báo -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="fas fa-check-circle"></i> {{ session('success') }}
@@ -102,7 +101,7 @@
                     </button>
                     <p class="checkout-note">Đảm bảo thông tin giao hàng chính xác</p>
                 </div>
-                <!-- Checkout Modal -->
+                
                 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -209,7 +208,7 @@
 
   @include('layouts.footer')
 
-  <!-- Checkout Modal -->
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -325,7 +324,6 @@ function clearCart() {
     }
 }
 
-// Auto dismiss alerts
 document.addEventListener('DOMContentLoaded', function() {
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(alert => {
@@ -355,12 +353,10 @@ function getPaymentMethodText(method) {
     switch(method) {
         case 'cod': return 'Thanh toán khi nhận hàng';
         case 'bank': return 'Chuyển khoản ngân hàng';
-        case 'momo': return 'Ví MoMo';
         default: return 'Không xác định';
     }
 }
 
-// Initialize first payment method as selected
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         const firstPaymentMethod = document.querySelector('.payment-method');

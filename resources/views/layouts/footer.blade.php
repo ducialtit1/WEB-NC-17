@@ -70,7 +70,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <p class="footer-copyright mb-0">
-                    &copy; {{ date('Y') }} Food Store. Tất cả quyền được bảo lưu.
+                    &copy; {{ date('Y') }} Food Store.
                 </p>
             </div>
             <div class="col-md-6 text-md-end">
