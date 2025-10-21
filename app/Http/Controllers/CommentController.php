@@ -50,7 +50,6 @@ class CommentController extends Controller
      */
     public function approve($id)
     {
-        // Kiểm tra quyền admin
         if (!Auth::user()->isAdmin()) {
             return abort(403);
         }
@@ -62,15 +61,10 @@ class CommentController extends Controller
         return back()->with('success', 'Bình luận đã được phê duyệt.');
     }
     
-    /**
-     * Remove the specified comment from storage.
-     * (Dành cho admin hoặc user đã tạo bình luận)
-     */
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
         
-        // Kiểm tra quyền xóa (là admin hoặc người tạo bình luận)
         if (Auth::user()->isAdmin() || (Auth::check() && Auth::id() === $comment->user_id)) {
             $comment->delete();
             return back()->with('success', 'Bình luận đã bị xóa.');

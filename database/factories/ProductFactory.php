@@ -7,12 +7,22 @@ class ProductFactory extends Factory
 {
     public function definition()
     {
-        // Danh sách từ khóa cho tên sản phẩm
-        $foodKeywords = ['Pizza', 'Mì Ý', 'Hamburger', 'Salad', 'Sushi'];
-        $drinkKeywords = ['Coca Cola', 'Pepsi', 'Trà Đào', 'Nước Cam', ];
+        $foodImageMap = [
+            'Pizza' => ['pizza_1.jpg', 'pizza_2.jpg', 'pizza_3.jpg', 'pizza_4.jpg'],
+            'Mì Ý' => ['miy_1.jpg', 'miy_2.jpg', 'miy_3.jpg', 'miy_4.jpg'],
+            'Hamburger' => ['ham_1.jpg', 'ham_2.jpg', 'ham_3.jpg', 'ham_4.jpg'],
+            'Salad' => ['salad_1.jpg', 'salad_2.jpg', 'salad_3.jpg', 'salad_4.jpg'],
+            'Sushi' => ['sushi_1.jpg', 'sushi_2.jpg', 'sushi_3.jpg', 'sushi_4.jpg'],
+        ];
+        $drinkImageMap = [
+            'Coca Cola' => ['coca.jpg'],
+            'Pepsi' => ['pepsi.jpg'],
+            'Trà Đào' => ['tradao.jpg'],
+            'Nước Cam' => ['nuoccam.jpg'],
+        ];
 
-        $foodImages = ['1.jpg', '2.jpg',  '4.jpg', '5.jpg'];
-        $drinkImages = ['6.jpg','3.jpg' , '9.jpg'];
+    $foodKeywords = array_keys($foodImageMap);
+    $drinkKeywords = array_keys($drinkImageMap);
 
         $sizes = ['S', 'M', 'L', 'XL'];
 
@@ -37,20 +47,18 @@ class ProductFactory extends Factory
         // Random loại sản phẩm
         $type = $this->faker->randomElement(['food', 'drink']);
 
-        $image = $type === 'food'
-            ? $this->faker->randomElement($foodImages)
-            : $this->faker->randomElement($drinkImages);
 
-        // Random tên sản phẩm và mô tả dựa trên loại
         if ($type === 'food') {
             $name = $this->faker->randomElement($foodKeywords);
             $description = $this->faker->randomElement($foodDescriptions);
+            $image = $this->faker->randomElement($foodImageMap[$name]);
         } else {
             $name = $this->faker->randomElement($drinkKeywords);
             $description = $this->faker->randomElement($drinkDescriptions);
+            $image = $this->faker->randomElement($drinkImageMap[$name]);
         }
 
-        // Random giá dựa trên loại sản phẩm
+        
         $price = $type === 'food'
             ? $this->faker->randomFloat(2, 50000, 500000) // Giá đồ ăn từ 50,000 đến 500,000
             : $this->faker->randomFloat(2, 10000, 50000); // Giá đồ uống từ 10,000 đến 50,000
