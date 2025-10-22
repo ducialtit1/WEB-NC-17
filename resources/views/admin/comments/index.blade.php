@@ -5,7 +5,7 @@
     <h3 class="mb-4">Quản lý bình luận</h3>
 
     <table class="table table-striped align-middle">
-        <thead class="table-dark">
+        <thead class="table-light">
             <tr>
                 <th>ID</th>
                 <th>Sản phẩm</th>
@@ -21,7 +21,7 @@
             @forelse ($comments as $comment)
                 <tr>
                     <td>#{{ $comment->id }}</td>
-                    <td>{{ $comment->product->name ?? 'Không rõ' }}</td>
+                    <td>{{ $comment->product->slug ?? 'Không rõ' }}</td>
                     <td>{{ $comment->commentator_name }}</td>
                     <td>{{ $comment->content }}</td>
                     <td>{{ $comment->rating }}/5</td>

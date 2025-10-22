@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Liên kết với bảng products
-            $table->string('path'); // Đường dẫn hoặc tên file hình ảnh
-            $table->boolean('is_main')->default(false); // Đánh dấu hình ảnh chính (mặc định là false)
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); 
+            $table->string('path'); 
+            $table->boolean('is_main')->default(false); 
             $table->timestamps();
         });
     }

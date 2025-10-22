@@ -14,20 +14,19 @@
     @stack('styles')
 </head>
 <body>
-    <!-- Navbar -->
+    
     <nav class="navbar navbar-expand-md admin-navbar">
         <div class="container-fluid">
-            <!-- Sidebar Toggle -->
             <button id="sidebarToggle" class="btn btn-link d-md-none me-2">
                 <i class="bi bi-list text-white"></i>
             </button>
             
-            <!-- Brand -->
+            
             <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Food Store Admin</a>
             
-            <!-- Navbar Right -->
+            
             <ul class="navbar-nav ms-auto">
-                <!-- Notifications -->
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-bell"></i>
@@ -35,15 +34,15 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
                         <li><h6 class="dropdown-header">Thông báo</h6></li>
-                        <li><a class="dropdown-item" href="#">Đơn hàng mới #123</a></li>
-                        <li><a class="dropdown-item" href="#">5 bình luận mới cần duyệt</a></li>
-                        <li><a class="dropdown-item" href="#">Người dùng mới đăng ký</a></li>
+                        <li><a class="dropdown-item" href="#">XNXX Đơn hàng mới #123</a></li>
+                        <li><a class="dropdown-item" href="#">XNXX Bình luận mới </a></li>
+                        <li><a class="dropdown-item" href="#">XNXX Người dùng mới đăng ký</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Xem tất cả thông báo</a></li>
                     </ul>
                 </li>
                 
-                <!-- User Info -->
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle me-1"></i>
@@ -67,7 +66,7 @@
         </div>
     </nav>
     
-    <!-- Sidebar -->
+    
     <div class="sidebar" style="width: 250px;">
         <div class="position-sticky">
             <ul class="nav flex-column p-3">
@@ -137,7 +136,7 @@
         </div>
     </div>
     
-    <!-- Main Content -->
+    
     <main class="main-content">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -157,7 +156,7 @@
         
         <footer>
             <div class="container">
-                <p>&copy; {{ date('Y') }} Food Store Admin. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Food Store Admin.</p>
             </div>
         </footer>
     </main>

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->string('type'); // Thêm cột type trước
-            $table->string('size')->nullable(); // KHÔNG dùng after
+            $table->string('type'); 
+            $table->string('size')->nullable(); 
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

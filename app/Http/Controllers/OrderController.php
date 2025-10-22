@@ -34,7 +34,7 @@ class OrderController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:500',
-            'payment_method' => 'required|in:cod,bank_transfer',
+            'payment_method' => 'required|in:cod,bank_transfer ',
             'notes' => 'nullable|string|max:500',
         ]);
 

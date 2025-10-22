@@ -48,6 +48,16 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // Save cart to database before logout
+        $cart = $request->session()->get('cart', []);
+        \Log::info('Cart before logout:', ['cart' => $cart, 'user_id' => $user->id]);
+        if (!empty($cart)) {
+            \App\Models\Cart::updateOrCreate(
+                ['user_id' => $user->id],
+                ['cart_data' => json_encode($cart)]
+            );
+        }
+
         Auth::logout();
 
         $user->delete();

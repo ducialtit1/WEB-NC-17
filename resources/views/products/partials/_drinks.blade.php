@@ -1,5 +1,5 @@
 
-<!-- filepath: d:\Do\WebNC\htdocs\my_Pro_FS\resources\views\products\partials\_drinks.blade.php -->
+
 <div class="row">
     @foreach ($drinks as $drink)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">

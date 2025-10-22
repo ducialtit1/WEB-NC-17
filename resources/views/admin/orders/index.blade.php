@@ -31,7 +31,9 @@
                             <td>{{ $order->name }}</td>
                             <td>{{ $order->phone }}</td>
                             <td>{{ $order->address }}</td>
-                            <td>{{ ucfirst($order->payment_method) }}</td>
+                            <td>
+                                {{ $order->payment_method == 'cod' ? 'COD' : 'Chuyển khoản ngân hàng' }}
+                            </td>
                             <td>{{ number_format($order->total, 0, ',', '.') }} ₫</td>
                             <td>
                                 @php

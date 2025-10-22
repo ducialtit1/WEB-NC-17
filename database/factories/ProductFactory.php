@@ -26,7 +26,7 @@ class ProductFactory extends Factory
 
         $sizes = ['S', 'M', 'L', 'XL'];
 
-        // Danh sách mô tả cho đồ ăn
+        
         $foodDescriptions = [
             'Một món ăn ngon miệng, phù hợp cho mọi bữa ăn.',
             'Món ăn được chế biến từ nguyên liệu tươi ngon.',
@@ -35,7 +35,7 @@ class ProductFactory extends Factory
             'Món ăn được yêu thích bởi nhiều khách hàng.',
         ];
 
-        // Danh sách mô tả cho đồ uống
+        
         $drinkDescriptions = [
             'Thức uống giải khát tuyệt vời cho ngày hè.',
             'Hương vị tươi mát, phù hợp với mọi bữa ăn.',
@@ -44,7 +44,7 @@ class ProductFactory extends Factory
             'Thức uống mang lại cảm giác sảng khoái.',
         ];
 
-        // Random loại sản phẩm
+        
         $type = $this->faker->randomElement(['food', 'drink']);
 
 
@@ -60,17 +60,17 @@ class ProductFactory extends Factory
 
         
         $price = $type === 'food'
-            ? $this->faker->randomFloat(2, 50000, 500000) // Giá đồ ăn từ 50,000 đến 500,000
-            : $this->faker->randomFloat(2, 10000, 50000); // Giá đồ uống từ 10,000 đến 50,000
+            ? $this->faker->randomFloat(2, 50000, 500000) 
+            : $this->faker->randomFloat(2, 10000, 50000); 
 
-        // Tạo slug duy nhất từ tên sản phẩm + timestamp để tránh trùng lặp
+        
         $slug = \Illuminate\Support\Str::slug($name) . '-' . time() . '-' . rand(1000, 9999);
 
         return [
-            'category_id' => $type === 'food' ? 1 : 2, // Giả sử 1 = Đồ ăn, 2 = Đồ uống
+            'category_id' => $type === 'food' ? 1 : 2, 
             'name' => $name,
             'slug' => $slug,
-            'description' => $description, // Mô tả phù hợp với loại sản phẩm
+            'description' => $description,
             'price' => $price,
             'type' => $type,
             'size' => $this->faker->randomElement($sizes),

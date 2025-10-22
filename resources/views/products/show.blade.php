@@ -18,7 +18,7 @@
             
             <div class="product-card mb-5">
                 <div class="product-layout">
-                    <!-- Ảnh bên trái -->
+                    
                     <div class="product-image">
                         @php
                             $imgPath = optional($product->mainImage)->path 
@@ -28,7 +28,7 @@
                         <img src="{{ asset('imgs/' . $imgPath) }}" alt="{{ $product->name }}" class="product-img">
                     </div>
                     
-                    <!-- Thông tin bên phải -->
+                    
                     <div class="product-details">
                         <h1>{{ $product->name }}</h1>
                         <p>{{ $product->description }}</p>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             
-            <!-- Phần bình luận -->
+            
             <div class="product-comments">
                 <h3 class="comments-title">Bình luận ({{ isset($comments) ? $comments->count() : count($randomComments) }})</h3>
                 
@@ -124,7 +124,7 @@
                     @endforeach
                 @endif
                 
-                <!-- Form bình luận mới -->
+                
                 <div class="comment-form">
                     <h4>Để lại bình luận</h4>
                     <form action="{{ route('comments.store', $product->id) }}" method="POST">
@@ -163,7 +163,6 @@
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Script điều khiển số lượng
         const minusBtn = document.querySelector('.quantity-btn.minus');
         const plusBtn = document.querySelector('.quantity-btn.plus');
         const quantityInput = document.querySelector('input[name="quantity"]');
@@ -180,7 +179,7 @@
             quantityInput.value = currentValue + 1;
         });
         
-        // Script đánh giá sao
+    
         const stars = document.querySelectorAll('.rating-select .star');
         const ratingInput = document.getElementById('rating');
         

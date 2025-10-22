@@ -38,5 +38,6 @@ class ProductSeeder extends Seeder
                 'is_main' => true,
             ]);
         });
+
     }
 }

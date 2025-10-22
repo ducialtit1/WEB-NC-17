@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- NÚT ĐẶT HÀNG -->
+                                
                                 <div class="d-grid gap-2 mt-4">
                                     <button type="submit" class="btn btn-success btn-lg">
                                         XÁC NHẬN ĐẶT HÀNG
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     
-                    <!-- THÊM NÚT ĐẶT HÀNG PHÍA DƯỚI BẢNG ĐƠN HÀNG -->
+                    
                     <div class="d-grid gap-2 mt-3">
                         <button form="checkout-form" type="submit" class="btn btn-success btn-lg">
                             XÁC NHẬN ĐẶT HÀNG

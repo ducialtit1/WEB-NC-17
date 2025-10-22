@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="hero-image">
-                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Food" class="img-fluid rounded-4 shadow-lg">
+                            <img src="imgs/banh.avif" alt="Delicious Food" class="img-fluid rounded-4 shadow-lg">
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    
     <section class="features-section py-5">
         <div class="container">
             <div class="row g-4">
@@ -246,7 +246,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Kitchen" class="img-fluid rounded-4 shadow-lg">
+                        <img src="imgs/i_1.webp" alt="FS" class="img-fluid rounded-4 shadow-lg">
                     </div>
                 </div>
             </div>

@@ -37,9 +37,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    /**
-     * Trả về chuỗi trạng thái tiếng Việt
-     */
+    
     public function getStatusLabelAttribute()
     {
         return match ($this->status) {

@@ -59,7 +59,7 @@ class ProductController extends Controller
         ];
         
         $randomComments = [];
-        $commentCount = rand(4, 8); // Số lượng bình luận ngẫu nhiên
+        $commentCount = rand(4, 8); 
         
         for ($i = 0; $i < $commentCount; $i++) {
             $date = now()->subDays(rand(1, 60))->format('d/m/Y');
@@ -73,7 +73,7 @@ class ProductController extends Controller
             ];
         }
         
-        // Sắp xếp bình luận theo ngày giảm dần (mới nhất lên đầu)
+        
         usort($randomComments, function ($a, $b) {
             return strtotime(str_replace('/', '-', $b['date'])) - 
                   strtotime(str_replace('/', '-', $a['date']));
@@ -82,5 +82,5 @@ class ProductController extends Controller
         return $randomComments;
     }
     
-    // ...other methods
+    
 }

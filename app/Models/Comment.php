@@ -15,8 +15,8 @@ class Comment extends Model
         'guest_name',
         'content',
         'rating',
-        'is_approved',  // Thêm trường này để quản lý trạng thái duyệt
-        'is_rejected',  // Thêm trường này để quản lý trạng thái từ chối
+        'is_approved',  
+        'is_rejected',  
     ];
 
     /**
@@ -59,7 +59,7 @@ class Comment extends Model
     /**
      * Lấy tên người bình luận (người dùng đã đăng nhập hoặc khách)
      *
-     * @return string
+     *@return string
      */
     public function getCommentatorNameAttribute()
     {

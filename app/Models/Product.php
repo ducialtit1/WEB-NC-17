@@ -14,14 +14,14 @@ class Product extends Model
         'slug',
         'description',
         'price',
-        'type', // Thêm cột type vào fillable
+        'type',
     ];
     public function mainImage()
     {
         return $this->hasOne(\App\Models\ProductImage::class)->where('is_main', true);
     }
 
-    // Quan hệ lấy tất cả ảnh
+    
     public function images()
     {
         return $this->hasMany(\App\Models\ProductImage::class);

@@ -26,9 +26,16 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // Restore cart from database after login
+        $user = Auth::user();
+        $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+        if ($cart) {
+            $request->session()->put('cart', json_decode($cart->cart_data, true));
+        }
+
         $request->session()->regenerate();
 
-        return redirect()->intended('/'); 
+        return redirect()->intended('/');
     }
 
     /**
@@ -36,6 +43,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Save cart to database before logout
+        $user = Auth::user();
+        $cart = $request->session()->get('cart', []);
+        \Log::info('Cart before logout:', ['cart' => $cart, 'user_id' => $user ? $user->id : null]);
+        if ($user && !empty($cart)) {
+            \App\Models\Cart::updateOrCreate(
+                ['user_id' => $user->id],
+                ['cart_data' => json_encode($cart)]
+            );
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

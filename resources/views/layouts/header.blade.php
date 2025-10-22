@@ -40,7 +40,7 @@
           </a>
         </li>
         @auth
-        <!-- Nút đường dẫn tới thông tin đặt hàng cho người dùng đã đăng nhập -->
+        
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('my.orders') ? 'active' : '' }}" href="{{ route('my.orders') }}">
             <i class="bi bi-box"></i> Đơn hàng của tôi
