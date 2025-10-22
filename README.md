@@ -1,5 +1,4 @@
-# Dự án Laravel E-Commerce
-
+# Dự án Laravel Food Store
 ## Tính năng
 
 - Trang chủ hiện đại với phần hero, sản phẩm nổi bật, giới thiệu, liên hệ
